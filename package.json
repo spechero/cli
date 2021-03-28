@@ -1,0 +1,32 @@
+{
+  "name": "spechero",
+  "version": "0.0.1",
+  "description": "Command line tool for creating and sharing specs via spechero.io",
+  "main": "./lib/index.js",
+  "bin": {
+    "spechero": "./lib/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "testing",
+    "tdd",
+    "bdd",
+    "out-sourcing",
+    "cli",
+    "spechero",
+    "tests",
+    "specs"
+  ],
+  "author": "Ritchie Young",
+  "license": "MIT",
+  "dependencies": {
+    "fs-extra": "^9.1.0",
+    "simple-git": "^2.37.0",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "file": "^0.2.2"
+  }
+}
