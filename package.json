@@ -23,10 +23,8 @@
   "license": "MIT",
   "dependencies": {
     "fs-extra": "^9.1.0",
+    "glob": "^7.1.6",
     "simple-git": "^2.37.0",
     "yargs": "^16.2.0"
-  },
-  "devDependencies": {
-    "file": "^0.2.2"
   }
 }
