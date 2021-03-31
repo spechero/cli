@@ -1,19 +1,23 @@
 require 'fileutils'
+require 'time'
 include  Aruba::Api::Commands
 
 SPECHERO_BASE_DIR="./tmp/spechero_dirs"
 
 def env()
   @env||={
-    'SPECHERO_EDITOR' => "touch #{editor_opened_filename}"
+    'SPECHERO_EDITOR' => "touch #{editor_opened_filename}",
+    'SPECHERO_START_CONTAINERS' => "touch #{docker_compose_launched_filename}"
   }
 end
 
 def editor_opened_filename
-  require 'time'
-  @editor_opened_filename ||= "./tmp/#{DateTime.now.strftime('editor_opened_at_%s')}"
+  @editor_opened_filename ||= DateTime.now.strftime('editor_opened_at_%s')
 end
 
+def docker_compose_launched_filename
+  @docker_compose_launched_filename ||= DateTime.now.strftime('docker_compose_launched_at_%s')
+end
 
   Given('the spechero cli has been installed') do
     # TODO make this npm link if spechero isn't already installed.
@@ -33,7 +37,7 @@ end
   Then('a {string} spec is created from the {string} template and opens in his editor') do |spec_name, _template_name|
     directory = "#{specs_dir('bob')}/#{spec_name}"
     expect(Dir.exist?(directory)).to be_truthy
-    expect(File.exist?(editor_opened_filename)).to be_truthy
+    expect(File.exist?("#{directory}/#{editor_opened_filename}")).to be_truthy
   end
   
   Then('a repo is created in his {string} spec with a {string} branch') do |spec, branch|
@@ -44,8 +48,9 @@ end
     expect(actual_branch).to eq(branch)
   end
 
-  When('the containers to run his specs are launched') do
-    pending # Write code here that turns the phrase above into concrete actions
+  When('the containers to run his {string} spec are launched') do |spec|
+    directory = "#{specs_dir('bob')}/#{spec}"
+    expect(File.exist?("#{directory}/#{docker_compose_launched_filename}")).to be_truthy
   end
   
   When('{string} updates the {string} spec to describe his problem') do |string, string2|

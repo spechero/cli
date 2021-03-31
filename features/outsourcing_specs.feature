@@ -7,9 +7,9 @@ Feature: Specs can be outsourced
 
     Scenario: An outsourced spec is solved successfully
         When "bob" runs "spechero new ruby-rspec calc"
-        # Then a "calc" spec is created from the "ruby-rspec" template and opens in his editor
+        Then a "calc" spec is created from the "ruby-rspec" template and opens in his editor
         And a repo is created in his "calc" spec with a "problem" branch
-        And the containers to run his specs are launched
+        And the containers to run his "calc" spec are launched
 # When "bob" updates the "calc" spec to describe his problem
 # And he runs "git add . && git commit -m 'problem'"
 # And he runs "git push spechero"
