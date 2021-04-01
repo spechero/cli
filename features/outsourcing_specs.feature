@@ -10,14 +10,12 @@ Feature: Specs can be outsourced
         Then a "calc" spec is created from the "ruby-rspec" template and opens in his editor
         And a repo is created in his "calc" spec with a "problem" branch
         And the containers to run his "calc" spec are launched
-# When "bob" updates the "calc" spec to describe his problem
-# And he runs "git add . && git commit -m 'problem'"
-# And he runs "git push spechero"
-# Then the spec "bob/calc" appears in the help wanted list
+        When "bob" updates the "calc" spec to describe his problem
+        And he runs "spechero share calc"
 
 # When "mary" runs "spechero problems"
-# Given then she should see the "bob/calc" spec
-# When "mary" runs "spechero solve bob/calc"
+# Then she should see the "bob/calc" spec
+# When "mary" runs "spechero try bob/calc"
 # Then the spec is cloned to her computer
 # And a branch called "solutions/mary" is created
 # When Mary runs "spechero ok"
@@ -26,16 +24,15 @@ Feature: Specs can be outsourced
 # When "mary" updates the code to fix the problem
 # Then the spec runs on her computer and passes
 
-# When she runs "git add . && git commit -m 'here is my solution'"
-# And she runs "git push spechero"
+# When she runs "spechero solve bob/calc"
 # Then "bob" is notified that there is a solution to "calc"
 
-# When "bob" runs "git checkout solutions/mary"
-# Then he is told he needs to review and run "spechero ok"
-# When he runs "spechero ok"
+# When "bob" runs "spechero review calc mary"
+# Then he is told he needs to review and run "spechero calc mary ok"
+# When he runs "spechero calc mary ok"
 # Then the spec runs on his computer and passes
 
-# When he runs "spechero accept"
+# When he runs "spechero accept calc mary"
 # Then "solution" tag is created from the "mary" commit and pushed
 # And "mary" is notified that her spec has been accepted
 # And the problem no longer appears on the help wanted page
