@@ -21,6 +21,15 @@ def docker_compose_launched_filename
   @docker_compose_launched_filename ||= DateTime.now.strftime('docker_compose_launched_at_%s')
 end
 
+Given('{string} is authenticated to his/her spechero account') do |_user|
+  # Spechero accepts an email authentication in development and test.
+  # It will automatically create a user if it doesn't exist.
+  @authorizations = {
+    "bob" => "Email bob@example.com",
+    "mary" => "Email mary@example.com"
+  }
+end
+
 Given('the spechero cli has been installed') do
   # TODO: make this npm link if spechero isn't already installed.
 end
